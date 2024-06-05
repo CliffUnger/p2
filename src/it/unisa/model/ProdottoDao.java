@@ -154,13 +154,15 @@ public class ProdottoDao implements ProdottoDaoInterfaccia{
 		String selectSQL = "SELECT * FROM " + ProdottoDao.TABLE_NAME;
 
 		if (order != null && !order.equals("")) {
-			selectSQL += " ORDER BY " + order;
+		    selectSQL += " ORDER BY ?";
 		}
 
 		try {
-			connection = ds.getConnection();
-			preparedStatement = connection.prepareStatement(selectSQL);
-
+		    connection = ds.getConnection();
+		    preparedStatement = connection.prepareStatement(selectSQL);
+		    if (order != null && !order.equals("")) {
+		        preparedStatement.setString(1, order);
+		    }
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
