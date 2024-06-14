@@ -39,7 +39,7 @@ public class RegistrazioneServlet extends HttpServlet {
             user.setEmail(email);
             user.setDataDiNascita(Date.valueOf(dataNascita));
             user.setUsername(username);
-            user.setPassword(PasswordHashing.hashPassword(pwd)); // Applica l'hashing della password
+            user.setPassword(pwd); // Applica l'hashing della password
             user.setAmministratore(false);
             user.setCap(null);
             user.setIndirizzo(null);
